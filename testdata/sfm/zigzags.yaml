@@ -1,40 +1,39 @@
 %YAML:1.0
 
 # where is the data?
-data_dir: "/home/nstiurca/DATA/sfmdata/2_2014-08-27/results-ocl_Feature2D.ORB/downstairs_zigzags_forward_train/image"
-imgs_glob: "image_*.bmp"
+data_dir: "/home/nstiurca/DATA/sfmdata/4_2014-12-18/results/scene_cap0_2014-12-18-14-59-40/"
+imgs_glob: "image/image_*.bmp"
 begin_idx: 0
-end_idx: 4
+end_idx: 15
 
 # camera calibration
-ImageW: 752
-ImageH: 480
-Fx: 624.061653
-Fy: 625.291259
-Px: 380.911796
-Py: 226.172779
-k1: -0.425447
-k2: 0.171733
-k3: 0.001233
-k4: -0.001096
-k5: 0.000000
+calib_fname: "calib_radial.yaml"
+
+detector_SURF:
+  name: "xFeature2D.SURF"
 
 detector: #&DETECTOR_SAME_AS_EXTRACTOR
-   name: "Feature2D.ORB"
-   WTA_K: 2
-   edgeThreshold: 31
-   fastThreshold: 20
-   firstLevel: 0
-   nfeatures: 1500
-   nlevels: 8
-   patchSize: 31
-   scaleFactor: 1.2
-   scoreType: 0 
+  name: "Feature2D.ORB"
+  WTA_K: 2
+  edgeThreshold: 31
+  fastThreshold: 20
+  firstLevel: 0
+  nfeatures: 5000
+  nlevels: 8
+  patchSize: 31
+  scaleFactor: 1.2
+  scoreType: 0 
 extractor: DETECTOR_SAME_AS_EXTRACTOR
 
-matcher:
-#  name: BruteForce-Hamming
-#  options: {}
+matcher_bf_hamming:
+  name: BruteForce-Hamming
+  options: {}
+matcher_flann_KDtree:
+  name: FlannBased
+  options:
+    indexParams: []
+    searchParams: []
+matcher:  # Flann hamming
   name: FlannBased
   options:
    indexParams:
